@@ -3,11 +3,22 @@
 
 name: Build and deploy ASP.Net Core app to Azure Web App - lz-it-app-naming-prod-weu-001
 
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '8.0.x'                 # set this to the .NET Core version to use
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: src
+
+permissions:
+  contents: read
 
 jobs:
   build:
